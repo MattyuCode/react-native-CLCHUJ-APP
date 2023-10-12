@@ -15,6 +15,18 @@ import { Modal } from "./src/Components/Modal/Modal";
 import { Login } from "./src/Components/Auth/Login";
 import { AuthContext, AuthProvider } from "./src/Components/Context/AuthContext";
 
+
+//pon un comentario aqui y lo intentas guardar
+
+
+
+
+
+
+
+
+
+
 export default function App() {
   const Stack = createStackNavigator();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
