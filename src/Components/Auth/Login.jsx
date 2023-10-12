@@ -12,44 +12,10 @@ import {
 import { AuthContext } from "../Context/AuthContext";
 
 export const Login = () => {
-  const [inputText, setInputText] = useState("");
-  const [inputText1, setInputText1] = useState("");
-  const [user, setUser] = useState([]);
   const navigation = useNavigation();
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState("");
   const { login } = useContext(AuthContext);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://api-clchuj.onrender.com/api/users"
-        );
-        const data = await response.json();
-        // console.log(data.users);
-        setUser(data.users);
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-    fetchData();
-  }, []);
-
-  const handleButtonClick = () => {
-    if (
-      user.find(
-        (item) => item.user === inputText && item.password === inputText1
-      )
-    ) {
-      console.log("Si es correceto");
-      // navigation.navigate("CLCHUJ");
-      window.location.href = "/";
-      // localStorage.setItem("NO_CIA", data.no_cia);
-      localStorage.setItem("token", "Mattyu's");
-    } else {
-      alert("😮  DATOS INCORRECTOS 😪😪");
-      console.log("no es correcto");
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -65,18 +31,24 @@ export const Login = () => {
       </Text>
       <TextInput
         style={[styles.input, { marginBottom: 40 }]}
-        value={inputText}
-        onChangeText={(value) => setInputText(value)}
+        value={user}
+        onChangeText={(value) => setUser(value)}
         placeholder="Usuario"
       />
       <TextInput
         style={[styles.input, { marginBottom: 45 }]}
-        onChangeText={(value) => setInputText1(value)}
-        value={inputText1}
+        value={password}
+        onChangeText={(value) => setPassword(value)}
         placeholder="Contraseña"
       />
 
-      <TouchableOpacity style={styles.button} onPress={() => login()}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          //BUG: Llamando la funcion para iniciar session
+          login(user, password);
+        }}
+      >
         <Text style={styles.buttonText}>INICIAR SESIÓN</Text>
       </TouchableOpacity>
     </View>
