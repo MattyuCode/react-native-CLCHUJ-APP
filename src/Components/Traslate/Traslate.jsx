@@ -56,7 +56,7 @@ function Traslate() {
   const handleClickPalabras = () => {
     setMostrarPalabras(inputText2);
   };
- 
+
   const mostrarPalabra = () => {
     if (palabras && palabras.datos) {
       const tralado = palabras.datos.find(
@@ -100,13 +100,12 @@ function Traslate() {
         ) : null}
       </View>
 
-      <View style={{ marginTop: 100 }}>
+      <View style={{ marginTop: 80 }}>
         <TextInput
           style={[styles.input, { marginBottom: 20 }]}
           value={inputText2}
           onChangeText={(value) => setInputText2(value)}
           placeholder="Ingresa alguna palabra"
-          keyboardType="numeric"
         />
         <TouchableOpacity style={styles.button} onPress={handleClickPalabras}>
           <Text style={styles.buttonText}>Traducir palabras</Text>
@@ -122,41 +121,37 @@ function Traslate() {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // marginTop: 30,
-    // justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 80,
-    backgroundColor: "#f9f9f9",
+    flex: 1,
+    marginTop: 30,
   },
   input: {
-    width: 400,
     height: 60,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#0000",
+    marginBottom: 20,
     paddingHorizontal: 10,
-    marginBottom: 10,
-    borderRadius: 8,
-    fontSize: 16,
-    color: "#333",
+    borderRadius: 5,
     backgroundColor: "#fff",
+    marginLeft: 25,
+    marginRight: 25,
   },
   button: {
     backgroundColor: "#4a90e2",
     padding: 15,
+    alignItems: "center",
     borderRadius: 8,
-    // width: "80%",
+    marginLeft: 25,
+    marginRight: 25,
   },
   buttonText: {
-    color: "white",
-    fontSize: 16,
+    color: "#fff",
+    fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
   },
   textoAbajo: {
-    marginTop: 20,
-    fontSize: 20,
-    color: "#555",
+    fontSize: 16,
+    marginTop: 10,
   },
 });
 
