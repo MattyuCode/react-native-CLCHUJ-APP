@@ -32,7 +32,7 @@ const AuthNavigator = () => {
         {isToken !== null ? (
           <>
             <Stack.Screen name="CLCHUJ" component={Home} />
-            <Stack.Screen name="Details" component={Details} />
+            <Stack.Screen name="Diccionario_Chuj" component={Details} />
             <Stack.Screen name="Traslate" component={Traslate} />
             <Stack.Screen name="Modal" component={Modal} />
           </>

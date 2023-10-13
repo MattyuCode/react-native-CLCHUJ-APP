@@ -42,6 +42,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   const logout = () => {
@@ -50,7 +51,6 @@ export const AuthProvider = ({ children }) => {
     //NOTE: ELIMIANDO EL INICIO DE SESSION
     AsyncStorage.removeItem("access_token");
     AsyncStorage.removeItem("user");
-    console.log("EN la fucnion de logout");
   };
 
   useEffect(() => {

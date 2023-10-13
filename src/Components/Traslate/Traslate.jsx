@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  SafeAreaView,
 } from "react-native";
 import numerosChuj from "../Service/DB.json";
 
@@ -18,7 +19,9 @@ function Traslate() {
     const fetchData = async () => {
       try {
         // const response = await fetch("http://localhost:3434/api/numerosChuj");
-        const response = await fetch("https://api-clchuj.onrender.com/api/numerosChuj");
+        const response = await fetch(
+          "https://api-clchuj.onrender.com/api/numerosChuj"
+        );
         const data = await response.json();
         console.table(data);
         setNumeros(data);
@@ -62,22 +65,41 @@ function Traslate() {
   // verJson();
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={[styles.input, { marginBottom: 20 }]}
-        value={inputText}
-        onChangeText={(value) => setInputText(value)}
-        placeholder="Ingrese un numero para traducir"
-        keyboardType="numeric"
-      />
-      <TouchableOpacity style={styles.button} onPress={handleButtonClick}>
-        <Text style={styles.buttonText}>Traducir</Text>
-      </TouchableOpacity>
-      {/* <Text style={styles.textoAbajo}>{submitButton}</Text> */}
-      {submitButton ? (
-        <Text style={styles.textoAbajo}>📝📖👉: {mostrarNumeros()}</Text>
-      ) : null}
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <TextInput
+          style={[styles.input, { marginBottom: 20 }]}
+          value={inputText}
+          onChangeText={(value) => setInputText(value)}
+          placeholder="Ingrese un numero para traducir"
+          keyboardType="numeric"
+        />
+        <TouchableOpacity style={styles.button} onPress={handleButtonClick}>
+          <Text style={styles.buttonText}>Traducir números</Text>
+        </TouchableOpacity>
+        {/* <Text style={styles.textoAbajo}>{submitButton}</Text> */}
+        {submitButton ? (
+          <Text style={styles.textoAbajo}>📝📖👉: {mostrarNumeros()}</Text>
+        ) : null}
+      </View>
+
+      <View>
+        <TextInput
+          style={[styles.input, { marginBottom: 20 }]}
+          value={inputText}
+          onChangeText={(value) => setInputText(value)}
+          placeholder="Ingrese un numero para traducir"
+          keyboardType="numeric"
+        />
+        <TouchableOpacity style={styles.button} onPress={handleButtonClick}>
+          <Text style={styles.buttonText}>Traducir palabras</Text>
+        </TouchableOpacity>
+        {/* <Text style={styles.textoAbajo}>{submitButton}</Text> */}
+        {submitButton ? (
+          <Text style={styles.textoAbajo}>📝📖👉: {mostrarNumeros()}</Text>
+        ) : null}
+      </View>
+    </SafeAreaView>
   );
 }
 

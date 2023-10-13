@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Button,
   View,
@@ -15,8 +15,11 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { AuthContext } from "../Context/AuthContext";
 
 const Home = ({ navigation }) => {
+  const { logout } = useContext(AuthContext);
+
   const handleAgregarPress = () => {
     Alert.alert("Agregado", "Se ha agregado algo.");
   };
@@ -49,15 +52,6 @@ const Home = ({ navigation }) => {
           justifyContent: "space-between",
         }}
       >
-        <TouchableOpacity style={styles.boton} onPress={handleAgregarPress}>
-          <AntDesign
-            name="addfile"
-            color="white"
-            style={[styles.icono, { fontSize: 20 }]}
-          />
-          <Text style={styles.botonText}>Agregar</Text>
-        </TouchableOpacity>
-
         <TouchableOpacity
           style={[styles.boton, { backgroundColor: "#4a98f7" }]}
           onPress={() => navigation.navigate("Traslate")}
@@ -67,7 +61,7 @@ const Home = ({ navigation }) => {
             color="white"
             style={[styles.icono, { fontSize: 20 }]}
           />
-          <Text style={styles.botonText}>Traducir números</Text>
+          <Text style={styles.botonText}>Traductor</Text>
         </TouchableOpacity>
         {/* <Navbar /> */}
 
@@ -92,32 +86,32 @@ const Home = ({ navigation }) => {
             color="white"
             style={[styles.icono, { fontSize: 20 }]}
           />
-          <Text style={styles.botonText}>Ver calendario</Text>
+          <Text style={styles.botonText}>Calcular Nahual</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.boton, { backgroundColor: "#0AC87A" }]}
-          onPress={() => navigation.navigate("Details")}
+          onPress={() => navigation.navigate("Diccionario_Chuj")}
         >
           <Icon
             name="tasks"
             color="white"
             style={[styles.icono, { fontSize: 20 }]}
           />
-          <Text style={styles.botonText}>Ver Tareas</Text>
+          <Text style={styles.botonText}>Diccionario</Text>
         </TouchableOpacity>
 
-
+        {/* //BOTON DE CERRAR */}
         <TouchableOpacity
-          style={[styles.boton, { backgroundColor: "#0AC87A" }]}
-          onPress={() => navigation.navigate("Login")}
+          style={[styles.botonCerrar, { backgroundColor: "red" }]}
+          onPress={() => logout()}
         >
-          <Icon
+          {/* <Icon
             name="tasks"
             color="white"
             style={[styles.icono, { fontSize: 20 }]}
-          />
-          <Text style={styles.botonText}>Ver Tareas</Text>
+          /> */}
+          <Text style={styles.botonText}>Cerrar Session</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -138,6 +132,17 @@ const styles = StyleSheet.create({
   boton: {
     backgroundColor: "green",
     padding: 20,
+    borderRadius: 5,
+    width: "auto",
+    flexDirection: "row",
+    alignItems: "center",
+    margin: 15,
+  },
+  botonCerrar: {
+    backgroundColor: "green",
+    padding: 20,
+    paddingTop: 5,
+    paddingBottom: 5,
     borderRadius: 5,
     width: "auto",
     flexDirection: "row",
