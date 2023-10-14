@@ -1,20 +1,28 @@
 import React from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
 
 const Details = () => {
   return (
-    <View style={styles.container}>
-      <Text>Bienvenidos en la</Text>
-      <Text>Comunidad Lingüistica Chuj</Text>
-      {/* <Image
+    <ScrollView>
+      <View style={styles.container}>
+        {/* <Image
         source={{
           uri: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
         }}
         
         style={styles.imagen}
       /> */}
-       <Image source={require("./../../../assets/clchuj.jpg")} style={styles.imagen} />
-    </View>
+        <Image
+          source={require("./../../../assets/A.jpg")}
+          style={styles.imagen}
+        />
+        <Image
+          source={require("./../../../assets/b.jpg")}
+          style={styles.imagen}
+        />
+         
+      </View>
+    </ScrollView>
   );
 };
 
@@ -24,12 +32,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    paddingLeft: 30,
+    paddingRight: 30,
   },
   imagen: {
-    width: 200,
-    height: 200,
+    width: "100%",
+    height: 900,
     marginTop: 20,
-    borderRadius: 100
   },
 });
 
