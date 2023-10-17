@@ -20,6 +20,38 @@ const Details = () => {
           source={require("./../../../assets/b.jpg")}
           style={styles.imagen}
         />
+        <Image
+          source={require("./../../../assets/c1.png")}
+          style={styles.imagen}
+        />
+        <Image
+          source={require("./../../../assets/c2.png")}
+          style={styles.imagen}
+        />
+        <Image
+          source={require("./../../../assets/c4.png")}
+          style={styles.imagen}
+        />
+        <Image
+          source={require("./../../../assets/c5.png")}
+          style={styles.imagen}
+        />
+        <Image
+          source={require("./../../../assets/c6.png")}
+          style={styles.imagen}
+        />
+        <Image
+          source={require("./../../../assets/c7.png")}
+          style={styles.imagen}
+        />
+        <Image
+          source={require("./../../../assets/c8.png")}
+          style={styles.imagen}
+        />
+        <Image
+          source={require("./../../../assets/c8.png")}
+          style={styles.imagen}
+        />
          
       </View>
     </ScrollView>
