@@ -79,7 +79,7 @@ const Home = ({ navigation }) => {
 
         <TouchableOpacity
           style={[styles.boton, { backgroundColor: "#C8750A" }]}
-          onPress={() => navigation.navigate("Calendar")}
+          onPress={() => navigation.navigate("nahual")}
         >
           <Ionicons
             name="calendar"

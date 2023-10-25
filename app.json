@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "CRUD_APP",
-    "slug": "CRUD_APP",
+    "name": "appchuj",
+    "slug": "appchuj",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mattyu.APP_CHUJ"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0deaafb1-57b4-4d25-aa28-afbaacf0be0e"
+      }
     }
   }
 }
