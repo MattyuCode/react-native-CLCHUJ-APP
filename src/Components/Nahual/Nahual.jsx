@@ -1,6 +1,6 @@
 import { Picker } from "@react-native-picker/picker";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,39 +8,46 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { API_Services } from "../../Config/env";
 
 const Nahual = () => {
   const [day, setDay] = useState("1");
   const [month, setMonth] = useState("01"); // Establece el mes inicial que desees.
   const [year, setYear] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [nahuales, setNahuales] = useState([]);
 
   const handleSearch = () => {
     if (day && month && year) {
       const selectedMonth = MESES.find((mes) => mes.id_mes === month);
-      console.log("LA FECHA INGREASADA ES ", selectedDate);
       setSelectedDate(`${day}-${selectedMonth.id_mes}-${year}`);
     } else {
       setSelectedDate(null);
     }
   };
 
+  useEffect(() => {
+    const fetchDatas = async (req, res, next) => {
+      try {
+        const response = await fetch(`${API_Services}/nahual`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        setNahuales(data);
+      } catch (error) {}
+    };
+    fetchDatas();
+  }, []);
+
   const nahual = () => {
     if (selectedDate) {
       const selected = selectedDate;
-      const nahuales = [
-        {
-          fecha: "12-12-2020",
-          title: "Boton",
-        },
-        {
-          fecha: "04-04-2014",
-          title: "TOj",
-        },
-      ];
-
-      const nahualEncontrado = nahuales.find((item) => item.fecha === selected);
-      const nombreNahual = nahualEncontrado.title;
+      const nahualEncontrado = nahuales.find((item) => item.fecha_nahual === selected);
+    const nombreNahual = nahualEncontrado?.nombre_nahual;
       if (nombreNahual) {
         return nombreNahual;
       } else {
