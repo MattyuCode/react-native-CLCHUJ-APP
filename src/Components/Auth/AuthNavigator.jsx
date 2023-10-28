@@ -3,7 +3,8 @@ import "react-native-gesture-handler";
 import Home from "../Home/Home";
 import Details from "../Details/Details";
 import Traslate from "../Traslate/Traslate";
-import { Login } from "./Login"; 
+import { Login } from "./Login";
+import { Register } from "./Register";
 import { StatusBar } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { AuthContext } from "../Context/AuthContext";
@@ -37,7 +38,10 @@ const AuthNavigator = () => {
             <Stack.Screen name="nahual" component={Nahual} />
           </>
         ) : (
-          <Stack.Screen name="Login" component={Login} />
+          <>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="signup" component={Register} />
+          </>
         )}
       </Stack.Navigator>
       <StatusBar style={"dark"} />

@@ -8,7 +8,10 @@ import {
   Dimensions,
   TextInput,
   TouchableOpacity,
+  StatusBar,
+  SafeAreaView,
 } from "react-native";
+import tw from "twrnc";
 import { AuthContext } from "../Context/AuthContext";
 
 export const Login = () => {
@@ -17,78 +20,113 @@ export const Login = () => {
   const [user, setUser] = useState("");
   const { login } = useContext(AuthContext);
 
-  return (
-    <View style={styles.container}>
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: 660,
-          color: "#006095",
-          marginBottom: 35,
-        }}
-      >
-        LOGIN
-      </Text>
-      <TextInput
-        style={[styles.input, { marginBottom: 40 }]}
-        value={user}
-        onChangeText={(value) => setUser(value)}
-        placeholder="Usuario"
-      />
-      <TextInput
-        style={[styles.input, { marginBottom: 45 }]}
-        value={password}
-        onChangeText={(value) => setPassword(value)}
-        placeholder="Contraseña"
-      />
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          //BUG: Llamando la funcion para iniciar session
-          login(user, password);
-        }}
-      >
-        <Text style={styles.buttonText}>INICIAR SESIÓN</Text>
-      </TouchableOpacity>
-    </View>
+  return (
+    <>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.card}>
+          <View style={tw`  `}>
+            <Image
+              style={[
+                tw`w-50 h-50  border-4 `,
+                { borderRadius: 150, borderColor: "#4a98f7" },
+              ]}
+              source={require("../../../assets/login.png")}
+            />
+          </View>
+
+          <Text
+            style={[tw`text-center  `, { fontSize: 30, marginTop: 20 }]}
+          >
+            LOGIN
+          </Text>
+
+          <TextInput
+            style={[
+              tw`w-80 bg-white p-4 border-2 border-sky-500 rounded-md mb-5 mt-5`,
+              { fontSize: 17 },
+            ]}
+            placeholder="Nombre de usuario"
+            value={user}
+            onChangeText={(value) => setUser(value)}
+          />
+
+          <TextInput
+            style={[
+              tw`w-80 bg-white p-4 border-2 border-sky-500 rounded-md mb-5 mt-5`,
+              { fontSize: 17 },
+            ]}
+            secureTextEntry={true}
+            value={password}
+            onChangeText={(value) => setPassword(value)}
+            placeholder="Contraseña"
+          />
+
+          <TouchableOpacity
+            onPress={() => {
+              login(user, password);
+            }}
+            style={[tw`bottom-0 w-52  p-3 rounded-2xl `, styles.botones]}
+          >
+            <Text style={tw`font-semibold text-white text-center text-xl`}>
+              Iniciar sesión
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            //FIXME: LLAMAMOS A ESTA FUNCION PARA IR LA PARTE DE REGISTRO CON NAVIGATION
+            onPress={() => navigation.navigate("signup")}
+            style={[tw`bottom-0 w-52 p-3 rounded-2xl mt-5`, styles.botones]}
+          >
+            <Text style={tw`font-semibold text-white text-center text-xl`}>
+              Registrarse
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.FondoBlanco}></View>
+
+        <StatusBar style={"light"} />
+      </SafeAreaView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 100,
-    // justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#009baa",
+    height: "100%",
   },
-  input: {
-    width: "90%",
-    height: 50,
-    borderWidth: 1,
-    borderColor: "#ccc",
+  FondoBlanco: {
     paddingHorizontal: 10,
-    // marginBottom: 10,
-    borderRadius: 8,
-    fontSize: 20,
-    // color: "#bfbfbfdb",
-    color: "#333",
-    backgroundColor: "#fff",
+    alignItems: "center",
+    backgroundColor: "#ffff",
+    borderTopEndRadius: 35,
+    borderTopStartRadius: 35,
+    height: "100%",
+    zIndex: 0,
+    marginTop: 180,
   },
-  button: {
-    backgroundColor: "#4a90e2",
-    padding: 10,
-    borderRadius: 8,
+
+  card: {
+    zIndex: 1,
+    flex: 1,
+    position: "absolute",
     justifyContent: "center",
-    height: 60,
-    width: "80%",
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold",
+    alignItems: "center",
     textAlign: "center",
+    // height: 350,
+    width: "100%",
+    // marginLeft: 20,
+    marginTop: 100,
+  },
+  botones: {
+    margnHorizontal: "25%",
+    backgroundColor: "#009baa",
   },
 });

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Button,
   View,
@@ -10,15 +10,24 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import { Navbar } from "../Navbar/Navbar";
+import { Feather } from "@expo/vector-icons";
+import tw from "twrnc";
+
 import Icon from "react-native-vector-icons/FontAwesome";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../Context/AuthContext";
 
-const Home = ({ navigation }) => {
+const Home = () => {
+  const navigation = useNavigation();
   const { logout } = useContext(AuthContext);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
 
   const handleAgregarPress = () => {
     Alert.alert("Agregado", "Se ha agregado algo.");
@@ -100,18 +109,23 @@ const Home = ({ navigation }) => {
           />
           <Text style={styles.botonText}>Diccionario</Text>
         </TouchableOpacity>
+      </View>
 
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", marginTop: 20 }}>
         {/* //BOTON DE CERRAR */}
-        <TouchableOpacity
-          style={[styles.botonCerrar, { backgroundColor: "red" }]}
-          onPress={() => logout()}
-        >
+        <TouchableOpacity style={styles.log_out} onPress={() => logout()}>
           {/* <Icon
             name="tasks"
             color="white"
             style={[styles.icono, { fontSize: 20 }]}
           /> */}
-          <Text style={styles.botonText}>Cerrar Session</Text>
+          <Feather
+            name="log-out"
+            size={24}
+            color="white"
+            style={{ marginRight: 5 }}
+          />
+          <Text style={styles.botonText}>Cerrar Sessión</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -126,7 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 20,
-    marginTop: 20,
+    marginTop: 70,
     // backgroundColor: "#3333",
   },
   boton: {
@@ -138,13 +152,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin: 15,
   },
-  botonCerrar: {
-    backgroundColor: "green",
-    padding: 20,
-    paddingTop: 5,
-    paddingBottom: 5,
+  log_out: {
+    backgroundColor: "#009baa",
+    padding: 10,
     borderRadius: 5,
-    width: "auto",
+    width: "50%",
+    justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
     margin: 15,
